@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.logging.Logger;
 
-@Controller
+@RestController
 public class UserController {
     UserService userService;
     Logger log;
@@ -37,9 +37,8 @@ public class UserController {
 
     @CrossOrigin
     // Mapping to create a new post
-    @RequestMapping(value = "/user", method = RequestMethod.PATCH, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/user", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> updateUser(@RequestBody User user) {
-
         userService.createUser(user);
         log.info("Created a new User: " + user.toString());
         return new ResponseEntity<String>(HttpStatus.OK);
