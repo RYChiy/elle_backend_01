@@ -11,7 +11,7 @@ import java.util.ArrayList;
 @Repository
 public class UserRepository {
 
-    @Autowired
+
     public ArrayList<User> userList = new ArrayList<>();
 
     //Admin creation

@@ -3,9 +3,13 @@ package fra.uas.user.service;
 
 import fra.uas.user.model.User;
 import fra.uas.user.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class UserService implements IUserService {
 
+    @Autowired
     UserRepository userRepository;
 
 
