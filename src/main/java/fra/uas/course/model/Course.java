@@ -1,6 +1,6 @@
 package fra.uas.course.model;
 
-import user.model.User;
+import fra.uas.user.model.User;
 
 import java.util.ArrayList;
 
