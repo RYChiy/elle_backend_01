@@ -3,6 +3,7 @@ package fra.uas.user.controller;
 
 import fra.uas.user.model.User;
 import fra.uas.user.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -13,8 +14,11 @@ import java.util.logging.Logger;
 
 @RestController
 public class UserController {
+
+
+    @Autowired
     UserService userService;
-    Logger log;
+    //Logger log = new Logger(UserController.class);
 
     @CrossOrigin
     // Mapping to create a new post
@@ -29,10 +33,10 @@ public class UserController {
     // Mapping to create a new post
     @RequestMapping(value = "/user/{userID}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getUser(@PathVariable int userID) {
-        System.out.printf("Hallooo");
+        System.out.println("Hallooo");
 
-        log.info("requested User data: " + userService.getUser(userID).toString());
-        return new ResponseEntity<String>(HttpStatus.OK);
+        System.out.println("requested User data: " + userService.getUser(userID).toString());
+        return ResponseEntity.status(HttpStatus.OK).body(userService.getUser(userID));
     }
 
     @CrossOrigin
@@ -40,7 +44,7 @@ public class UserController {
     @RequestMapping(value = "/user", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> updateUser(@RequestBody User user) {
         userService.createUser(user);
-        log.info("Created a new User: " + user.toString());
+        //log.info("Created a new User: " + user.toString());
         return new ResponseEntity<String>(HttpStatus.OK);
     }
 
@@ -50,7 +54,7 @@ public class UserController {
     public ResponseEntity<?> deleteUser(@PathVariable int userID) {
 
         userService.deleteUser(userID);
-        log.info("Created a new User: " + userService.getUser(userID).toString());
+       // log.info("Created a new User: " + userService.getUser(userID).toString());
         return new ResponseEntity<String>(HttpStatus.OK);
     }
 
