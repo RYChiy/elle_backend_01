@@ -1,6 +1,8 @@
 package fra.uas.user.model;
 
 public class User {
+
+
 	private int userId;
 	
 
@@ -18,6 +20,10 @@ public class User {
 		this.firstName=firstName;
 		this.lastName=lastName;
 		this.role = Role.STUDENT;
+	}
+
+	public User  (){
+
 	}
 
 	public int getUserId() {
@@ -67,6 +73,8 @@ public class User {
 	public void setRole(Role role) {
 		this.role = role;
 	}
-	
+
+
+
 
 }

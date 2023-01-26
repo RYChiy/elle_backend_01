@@ -3,6 +3,8 @@ package fra.uas.user.service;
 import fra.uas.user.model.User;
 
 public interface IUserService {
+
+	public User loginUser(String email, String password);
 	
 	public void createUser(User user);
 	
