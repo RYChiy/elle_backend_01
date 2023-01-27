@@ -24,7 +24,7 @@ public class UserController {
 
     @CrossOrigin
     // Mapping to create a new post
-    @RequestMapping(value = "/user/login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> loginUser(@RequestBody User user) {
 
         System.out.println(user.getEmail()+ user.getHashedPassword());
@@ -37,13 +37,14 @@ public class UserController {
     }
 
     @CrossOrigin
-    // Mapping to create a new post
-    @RequestMapping(value = "/user/{userID}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> getUser(@PathVariable int userID) {
+    // Mapping to get a user
+    @RequestMapping(value = "/user", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> getUser(@RequestHeader UUID token) {
         System.out.println("Hallooo");
+        //System.out.println(userService.getUserWithToken(token));
 
-        System.out.println("requested User data: " + userService.getUser(userID).toString());
-        return ResponseEntity.status(HttpStatus.OK).body(userService.getUser(userID));
+        //System.out.println("requested User data: " + userService.getUser(userID).toString());
+        return ResponseEntity.status(HttpStatus.OK).body(userService.getUserWithToken(token));
     }
 
     @CrossOrigin
