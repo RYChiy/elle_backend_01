@@ -18,6 +18,7 @@ public class UserService implements IUserService {
         for (User user : userRepository.userList
              ) {
             if (user.getToken()== token){
+              //  User user1=user;
                 return user;
             }
 
