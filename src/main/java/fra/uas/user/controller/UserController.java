@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
 import java.util.logging.Logger;
 
 @RestController
@@ -24,10 +25,10 @@ public class UserController {
     @CrossOrigin
     // Mapping to create a new post
     @RequestMapping(value = "/user/login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> loginUser() {
+    public ResponseEntity<?> loginUser(@RequestBody String email, String password) {
 
-        // userService.loginUser(email,password);
-        return new ResponseEntity<String>(HttpStatus.OK);
+
+        return ResponseEntity.status(HttpStatus.OK).body(userService.loginUser(email,password));
     }
 
     @CrossOrigin
@@ -42,9 +43,9 @@ public class UserController {
 
     @CrossOrigin
     // Mapping to create a new post
-    @RequestMapping(value = "/user", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> updateUser(@RequestBody User user) {
-        userService.createUser(user);
+    @RequestMapping(value = "/user", method = RequestMethod.PATCH, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> updateUser(@RequestBody User user, @RequestHeader UUID uuid) {
+        userService.updateUser(user);
         //log.info("Created a new User: " + user.toString());
         return new ResponseEntity<String>(HttpStatus.OK);
     }

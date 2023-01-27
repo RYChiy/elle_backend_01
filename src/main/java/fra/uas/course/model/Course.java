@@ -12,7 +12,7 @@ public class Course {
 
     private ArrayList<String> vmList;
 
-    private ArrayList<User> userList;
+    private ArrayList<Integer> userList;
     ;
     private String courseName;
     private String professor;
@@ -26,6 +26,10 @@ public class Course {
         this.description = description;
     }
 
+    public Course(){
+
+    }
+
     public int getCourseId() {
         return courseId;
     }
@@ -34,11 +38,11 @@ public class Course {
         this.courseId = courseId;
     }
 
-    public ArrayList<User> getUserList() {
+    public ArrayList<Integer> getUserList() {
         return userList;
     }
 
-    public void setUserList(ArrayList<User> userList) {
+    public void setUserList(ArrayList<Integer> userList) {
         this.userList = userList;
     }
 

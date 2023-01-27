@@ -6,11 +6,24 @@ import fra.uas.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 public class UserService implements IUserService {
 
     @Autowired
     UserRepository userRepository;
+
+    public User getUserWithToken(UUID token){
+        for (User user : userRepository.userList
+             ) {
+            if (user.getToken()== token){
+                return user;
+            }
+
+        }
+        return null;
+    }
 
 
     @Override
@@ -18,6 +31,7 @@ public class UserService implements IUserService {
         for (User user : userRepository.userList) {
 
             if (user.getEmail().equals(email)&&user.getHashedPassword().equals(password)){
+                user.setToken(UUID.randomUUID());
                 return user;
             }
         }
@@ -52,6 +66,11 @@ public class UserService implements IUserService {
 
     @Override
     public User updateUser(User user) {
+
+        User realUser = getUser(user.getUserId());
+        if (user.getToken() ==realUser.getToken() ){
+            return realUser;
+        }
         return null;
     }
 }
