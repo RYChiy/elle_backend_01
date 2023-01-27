@@ -32,7 +32,7 @@ public class CourseService implements ICourseService {
     }
 
     @Override
-    public List<Course> getAllCourses(int userID) {
+    public List<Course> getAllUserCourses(int userID) {
         List<Course> userCourseList = new ArrayList<>();
         for (Course course : courseRepository.courseList
         ) {
@@ -42,6 +42,11 @@ public class CourseService implements ICourseService {
             }
         }
         return userCourseList;
+    }
+
+    @Override
+    public List<Course> getAllCourses() {
+        return courseRepository.courseList;
     }
 
     @Override

@@ -25,10 +25,15 @@ public class UserController {
     @CrossOrigin
     // Mapping to create a new post
     @RequestMapping(value = "/user/login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> loginUser(@RequestBody String email, String password) {
+    public ResponseEntity<?> loginUser(@RequestBody User user) {
 
+        System.out.println(user.getEmail()+ user.getHashedPassword());
+       User newUser = userService.loginUser(user.getEmail(),user.getHashedPassword());
+       if(newUser != null){
+           return ResponseEntity.status(HttpStatus.OK).header("token", userService.getUserWithEmail(newUser.getEmail()).toString()).build();
+       }
 
-        return ResponseEntity.status(HttpStatus.OK).body(userService.loginUser(email,password));
+        return new ResponseEntity<String>(HttpStatus.UNAUTHORIZED);
     }
 
     @CrossOrigin

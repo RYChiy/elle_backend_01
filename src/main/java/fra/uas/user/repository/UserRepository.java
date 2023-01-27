@@ -30,7 +30,7 @@ public class UserRepository {
 
         User arvand = new User();
         arvand.setRole(Role.STUDENT);
-        arvand.setEmail("issam.boutachdat@stud.fra-uas.de");
+        arvand.setEmail("arvand.hashemi@stud.fra-uas.de");
         arvand.setFirstName("Issam");
         arvand.setLastName("Boutachdat");
         arvand.setHashedPassword("12345");

@@ -11,7 +11,9 @@ public interface ICourseService {
 	
 	public Course getCourse(int courseID);
 
-	public List<Course> getAllCourses(int userID);
+	public List<Course> getAllUserCourses(int userID);
+
+	public List<Course> getAllCourses();
 
 	
 	public Course updateCourse(int courseId);

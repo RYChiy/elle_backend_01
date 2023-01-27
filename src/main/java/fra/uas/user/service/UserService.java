@@ -25,6 +25,17 @@ public class UserService implements IUserService {
         return null;
     }
 
+    public UUID getUserWithEmail(String email){
+        for (User user : userRepository.userList
+        ) {
+            if (user.getEmail().equals(email)){
+                return user.getToken();
+            }
+
+        }
+        return null;
+    }
+
 
     @Override
     public User loginUser(String email, String password) {

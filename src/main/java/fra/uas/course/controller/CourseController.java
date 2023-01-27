@@ -34,10 +34,18 @@ public class CourseController {
 
     @CrossOrigin
     @RequestMapping(value = "/course", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> getAllUserCourse(@RequestHeader UUID userToken) {
+
+        System.out.println("requested Course data: " + courseService.getAllUserCourses(userService.getUserWithToken(userToken).getUserId()));
+        return ResponseEntity.status(HttpStatus.OK).body(courseService.getAllUserCourses(userService.getUserWithToken(userToken).getUserId()));
+    }
+
+    @CrossOrigin
+    @RequestMapping(value = "/course/all", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getAllCourse(@RequestHeader UUID userToken) {
 
-        System.out.println("requested Course data: " + courseService.getCourse(userService.getUserWithToken(userToken).getUserId()));
-        return ResponseEntity.status(HttpStatus.OK).body(courseService.getCourse(userService.getUserWithToken(userToken).getUserId()));
+        System.out.println("requested Course data: " + courseService.getAllUserCourses(userService.getUserWithToken(userToken).getUserId()));
+        return ResponseEntity.status(HttpStatus.OK).body(courseService.getAllUserCourses(userService.getUserWithToken(userToken).getUserId()));
     }
 
 
