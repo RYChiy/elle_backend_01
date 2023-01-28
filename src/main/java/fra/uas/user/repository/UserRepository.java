@@ -31,24 +31,24 @@ public class UserRepository {
         User arvand = new User();
         arvand.setRole(Role.STUDENT);
         arvand.setEmail("arvand.hashemi@stud.fra-uas.de");
-        arvand.setFirstName("Issam");
-        arvand.setLastName("Boutachdat");
+        arvand.setFirstName("Arvand");
+        arvand.setLastName("Hashemi");
         arvand.setHashedPassword("12345");
         arvand.setUserId(1);
 
         User rachid = new User();
         rachid.setRole(Role.STUDENT);
-        rachid.setEmail("issam.boutachdat@stud.fra-uas.de");
-        rachid.setFirstName("Issam");
-        rachid.setLastName("Boutachdat");
+        rachid.setEmail("rachid.yagubi@stud.fra-uas.de");
+        rachid.setFirstName("Rachid");
+        rachid.setLastName("Yagubi");
         rachid.setHashedPassword("12345");
         rachid.setUserId(1);
 
         User simon = new User();
         simon.setRole(Role.STUDENT);
-        simon.setEmail("issam.boutachdat@stud.fra-uas.de");
-        simon.setFirstName("Issam");
-        simon.setLastName("Boutachdat");
+        simon.setEmail("Simon.Carmesin@stud.fra-uas.de");
+        simon.setFirstName("Simon");
+        simon.setLastName("Carmesin");
         simon.setHashedPassword("12345");
         simon.setUserId(1);
 
