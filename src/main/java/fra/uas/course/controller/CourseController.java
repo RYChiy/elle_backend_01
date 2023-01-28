@@ -27,7 +27,7 @@ public class CourseController {
     CourseService courseService;
     //Logger log = new Logger(UserController.class);
 
-
+    //get specific course
     @CrossOrigin
     @RequestMapping(value = "/course/{courseID}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getCourse(@PathVariable int courseID,@RequestHeader UUID userToken ) {
@@ -38,7 +38,7 @@ public class CourseController {
         }
         return new ResponseEntity<String>(HttpStatus.UNAUTHORIZED);
     }
-
+    //courses of a user
     @CrossOrigin
     @RequestMapping(value = "/course", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getAllUserCourse(@RequestHeader UUID userToken) {
@@ -49,7 +49,7 @@ public class CourseController {
         }
         return new ResponseEntity<String>(HttpStatus.UNAUTHORIZED);
     }
-
+    //see all courses that exist
     @CrossOrigin
     @RequestMapping(value = "/course/all", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getAllCourse(@RequestHeader UUID userToken) {

@@ -27,7 +27,7 @@ public class UserController {
     //return new ResponseEntity<String>(HttpStatus.UNAUTHORIZED);
 
     @CrossOrigin
-    // Mapping to create a new post
+    // Mapping to Login
     @RequestMapping(value = "/login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> loginUser(@RequestBody User user) {
 
@@ -53,7 +53,7 @@ public class UserController {
     }
 
     @CrossOrigin
-    // Mapping to get a user
+    // Mapping to logout
     @RequestMapping(value = "/logout", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> logout(@RequestHeader UUID token) {
 
