@@ -1,6 +1,8 @@
 package fra.uas.course.controller;
 
 import fra.uas.course.service.CourseService;
+import fra.uas.token.TokenRepository;
+import fra.uas.token.TokenService;
 import fra.uas.user.model.User;
 import fra.uas.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,8 @@ import java.util.UUID;
 @RestController
 public class CourseController {
 
+    @Autowired
+    TokenService tokenService;
 
 
     @Autowired
@@ -26,45 +30,53 @@ public class CourseController {
 
     @CrossOrigin
     @RequestMapping(value = "/course/{courseID}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> getCourse(@PathVariable int courseID) {
+    public ResponseEntity<?> getCourse(@PathVariable int courseID,@RequestHeader UUID userToken ) {
 
-        System.out.println("requested Course data: " + courseService.getCourse(courseID));
-        return ResponseEntity.status(HttpStatus.OK).body(courseService.getCourse(courseID));
+        if (tokenService.checkIfTokenExistsAndIsValid(userToken)){
+            System.out.println("requested Course data: " + courseService.getCourse(courseID));
+            return ResponseEntity.status(HttpStatus.OK).body(courseService.getCourse(courseID));
+        }
+        return new ResponseEntity<String>(HttpStatus.UNAUTHORIZED);
     }
 
     @CrossOrigin
     @RequestMapping(value = "/course", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getAllUserCourse(@RequestHeader UUID userToken) {
 
+        if (tokenService.checkIfTokenExistsAndIsValid(userToken)){
         System.out.println("requested Course data: " + courseService.getAllUserCourses(userService.getUserWithToken(userToken).getUserId()));
         return ResponseEntity.status(HttpStatus.OK).body(courseService.getAllUserCourses(userService.getUserWithToken(userToken).getUserId()));
+        }
+        return new ResponseEntity<String>(HttpStatus.UNAUTHORIZED);
     }
 
     @CrossOrigin
     @RequestMapping(value = "/course/all", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getAllCourse(@RequestHeader UUID userToken) {
 
+        if (tokenService.checkIfTokenExistsAndIsValid(userToken)){
         System.out.println("requested Course data: " + courseService.getAllUserCourses(userService.getUserWithToken(userToken).getUserId()));
-        return ResponseEntity.status(HttpStatus.OK).body(courseService.getAllUserCourses(userService.getUserWithToken(userToken).getUserId()));
+        return ResponseEntity.status(HttpStatus.OK).body(courseService.getAllCourses());}
+        return new ResponseEntity<String>(HttpStatus.UNAUTHORIZED);
     }
 
 
-    @CrossOrigin
+  /*  @CrossOrigin
     @RequestMapping(value = "/course/{courseID}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> joinCourse(@RequestHeader UUID userToken, @PathVariable int courseID) {
 
         courseService.addUser(userService.getUserWithToken(userToken).getUserId(), courseID);
 
         return new ResponseEntity<String>(HttpStatus.OK);
-    }
+    }*/
 
-    @CrossOrigin
+    /*@CrossOrigin
     @RequestMapping(value = "/course/{courseID}", method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> leaveCourse(@RequestHeader UUID userToken,@PathVariable int courseID) {
 
         courseService.deleteUser(userService.getUserWithToken(userToken).getUserId(),courseID);
         // log.info("Created a new User: " + userService.getUser(userID).toString());
         return new ResponseEntity<String>(HttpStatus.OK);
-    }
+    }*/
 
 }
