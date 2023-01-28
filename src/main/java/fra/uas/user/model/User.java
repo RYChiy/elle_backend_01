@@ -5,7 +5,7 @@ import java.util.UUID;
 public class User {
 
 
-	private UUID token;
+
 	private int userId;
 	
 
@@ -78,12 +78,5 @@ public class User {
 	}
 
 
-	public UUID getToken() {
-		return token;
-	}
-
-	public void setToken(UUID token) {
-		this.token = token;
-	}
 
 }

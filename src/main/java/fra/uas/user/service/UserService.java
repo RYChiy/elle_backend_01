@@ -14,23 +14,13 @@ public class UserService implements IUserService {
     @Autowired
     UserRepository userRepository;
 
-    public User getUserWithToken(UUID token){
-        for (User user : userRepository.userList
-             ) {
-            if (user.getToken()== token){
-              //  User user1=user;
-                return user;
-            }
 
-        }
-        return null;
-    }
 
-    public UUID getUserWithEmail(String email){
+    public User getUserWithEmail(String email){
         for (User user : userRepository.userList
         ) {
             if (user.getEmail().equals(email)){
-                return user.getToken();
+                return user;
             }
 
         }
@@ -39,15 +29,15 @@ public class UserService implements IUserService {
 
 
     @Override
-    public User loginUser(String email, String password) {
+    public Boolean loginUser(String email, String password) {
         for (User user : userRepository.userList) {
 
             if (user.getEmail().equals(email)&&user.getHashedPassword().equals(password)){
-                user.setToken(UUID.randomUUID());
-                return user;
+
+                return true;
             }
         }
-        return null;
+        return false;
     }
 
     @Override
@@ -76,13 +66,5 @@ public class UserService implements IUserService {
         return null;
     }
 
-    @Override
-    public User updateUser(User user) {
 
-        User realUser = getUser(user.getUserId());
-        if (user.getToken() ==realUser.getToken() ){
-            return realUser;
-        }
-        return null;
-    }
 }

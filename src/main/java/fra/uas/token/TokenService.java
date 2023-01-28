@@ -11,6 +11,17 @@ public class TokenService implements  ITokenService{
     TokenRepository tokenRepository = new TokenRepository();
 
 
+    public Token getUserID(UUID usertoken){
+        for (Token token: tokenRepository.tokenList
+        ) {
+            if (token.getToken().equals(usertoken)){
+                return token;
+            }
+
+        }
+        return null;
+    }
+
     @Override
     public Token createToken(int userID) {
         for (Token token: tokenRepository.tokenList
@@ -21,7 +32,9 @@ public class TokenService implements  ITokenService{
 
         }
         Token token = new Token(userID);
+        System.out.println(token.getDateTime());
         tokenRepository.tokenList.add(token);
+        System.out.println(token);
         return token;
     }
 
@@ -39,9 +52,13 @@ public class TokenService implements  ITokenService{
 
     @Override
     public Boolean checkIfTokenExistsAndIsValid(UUID userToken) {
+
+        System.out.println(userToken);
         for (Token token: tokenRepository.tokenList
         ) {
-            if (token.getToken()==userToken){
+            System.out.println(token.getToken());
+            System.out.println(userToken);
+            if (token.getToken().equals(userToken)){
                 if (token.getDateTime().isBefore(token.getDateTime().plusMinutes(60))){
                     return true;
                 }

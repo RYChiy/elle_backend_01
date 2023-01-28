@@ -1,6 +1,7 @@
 package fra.uas.user.controller;
 
 
+import fra.uas.token.Token;
 import fra.uas.token.TokenService;
 import fra.uas.user.model.User;
 import fra.uas.user.service.UserService;
@@ -31,11 +32,14 @@ public class UserController {
     @RequestMapping(value = "/login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> loginUser(@RequestBody User user) {
 
-        System.out.println(user.getEmail() + user.getHashedPassword());
-        User newUser = userService.loginUser(user.getEmail(), user.getHashedPassword());
-        if (newUser != null) {
-            return ResponseEntity.status(HttpStatus.OK).header("token", userService.getUserWithEmail(newUser.getEmail()).toString()).build();
+        
+        if (userService.loginUser(user.getEmail(), user.getHashedPassword())){
+            Token token = tokenService.createToken(userService.getUserWithEmail(user.getEmail()).getUserId());
+            System.out.println(userService.getUserWithEmail(user.getEmail()).getUserId());
+                return ResponseEntity.status(HttpStatus.OK).header("token", token.getToken().toString()).build();
+
         }
+
 
         return new ResponseEntity<String>(HttpStatus.UNAUTHORIZED);
     }
@@ -46,8 +50,9 @@ public class UserController {
     public ResponseEntity<?> getUser(@RequestHeader UUID token) {
 
         if (tokenService.checkIfTokenExistsAndIsValid(token)) {
+            System.out.println("Hallo");
             //System.out.println("requested User data: " + userService.getUser(userID).toString());
-            return ResponseEntity.status(HttpStatus.OK).body(userService.getUserWithToken(token));
+            return ResponseEntity.status(HttpStatus.OK).body(userService.getUser(tokenService.getUserID(token).getUserID()));
         }
         return new ResponseEntity<String>(HttpStatus.UNAUTHORIZED);
     }
@@ -59,7 +64,7 @@ public class UserController {
 
         if (tokenService.checkIfTokenExistsAndIsValid(token)) {
             tokenService.deleteToken(token);
-            return ResponseEntity.status(HttpStatus.OK).body(userService.getUserWithToken(token));
+            return new ResponseEntity<String>(HttpStatus.OK);
         }
         return new ResponseEntity<String>(HttpStatus.UNAUTHORIZED);
     }

@@ -44,8 +44,8 @@ public class CourseController {
     public ResponseEntity<?> getAllUserCourse(@RequestHeader UUID userToken) {
 
         if (tokenService.checkIfTokenExistsAndIsValid(userToken)){
-        System.out.println("requested Course data: " + courseService.getAllUserCourses(userService.getUserWithToken(userToken).getUserId()));
-        return ResponseEntity.status(HttpStatus.OK).body(courseService.getAllUserCourses(userService.getUserWithToken(userToken).getUserId()));
+        //System.out.println("requested Course data: " + courseService.getAllUserCourses(userService.getUserWithToken(userToken).getUserId()));
+        return ResponseEntity.status(HttpStatus.OK).body(courseService.getAllUserCourses(tokenService.getUserID(userToken).getUserID()));
         }
         return new ResponseEntity<String>(HttpStatus.UNAUTHORIZED);
     }
@@ -55,7 +55,7 @@ public class CourseController {
     public ResponseEntity<?> getAllCourse(@RequestHeader UUID userToken) {
 
         if (tokenService.checkIfTokenExistsAndIsValid(userToken)){
-        System.out.println("requested Course data: " + courseService.getAllUserCourses(userService.getUserWithToken(userToken).getUserId()));
+
         return ResponseEntity.status(HttpStatus.OK).body(courseService.getAllCourses());}
         return new ResponseEntity<String>(HttpStatus.UNAUTHORIZED);
     }
