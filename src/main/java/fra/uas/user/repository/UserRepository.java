@@ -34,7 +34,7 @@ public class UserRepository {
         arvand.setFirstName("Arvand");
         arvand.setLastName("Hashemi");
         arvand.setHashedPassword("12345");
-        arvand.setUserId(1);
+        arvand.setUserId(2);
 
         User rachid = new User();
         rachid.setRole(Role.STUDENT);
@@ -42,7 +42,7 @@ public class UserRepository {
         rachid.setFirstName("Rachid");
         rachid.setLastName("Yagubi");
         rachid.setHashedPassword("12345");
-        rachid.setUserId(1);
+        rachid.setUserId(3);
 
         User simon = new User();
         simon.setRole(Role.STUDENT);
@@ -50,7 +50,7 @@ public class UserRepository {
         simon.setFirstName("Simon");
         simon.setLastName("Carmesin");
         simon.setHashedPassword("12345");
-        simon.setUserId(1);
+        simon.setUserId(4);
 
 
         userList.add(simon);
