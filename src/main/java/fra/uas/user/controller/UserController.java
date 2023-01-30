@@ -32,11 +32,12 @@ public class UserController {
     @RequestMapping(value = "/login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> loginUser(@RequestBody User user) {
 
-        
         if (userService.loginUser(user.getEmail(), user.getHashedPassword())){
+
             Token token = tokenService.createToken(userService.getUserWithEmail(user.getEmail()).getUserId());
             System.out.println(userService.getUserWithEmail(user.getEmail()).getUserId());
-                return ResponseEntity.status(HttpStatus.OK).header("token", token.getToken().toString()).build();
+            System.out.println(token.getToken().toString());
+            return ResponseEntity.status(HttpStatus.OK).body(token.getToken());
 
         }
 

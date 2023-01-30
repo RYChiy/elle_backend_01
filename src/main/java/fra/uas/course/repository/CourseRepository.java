@@ -127,6 +127,11 @@ public class CourseRepository {
         course6.getUserList().add(3);
         course6.getUserList().add(4);
 
+        courseList.add(course1);
+        courseList.add(course2);
+        courseList.add(course3);
+        courseList.add(course4);
+        courseList.add(course5);
         courseList.add(course6);
 
 

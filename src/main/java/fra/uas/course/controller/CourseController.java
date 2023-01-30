@@ -52,12 +52,13 @@ public class CourseController {
     //see all courses that exist
     @CrossOrigin
     @RequestMapping(value = "/course/all", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> getAllCourse(@RequestHeader UUID userToken) {
+    public ResponseEntity<?> getAllCourse(//@RequestHeader UUID userToken
+                                           ) {
 
-        if (tokenService.checkIfTokenExistsAndIsValid(userToken)){
+       // if (tokenService.checkIfTokenExistsAndIsValid(userToken)){
 
-        return ResponseEntity.status(HttpStatus.OK).body(courseService.getAllCourses());}
-        return new ResponseEntity<String>(HttpStatus.UNAUTHORIZED);
+        return ResponseEntity.status(HttpStatus.OK).body(courseService.getAllCourses());//}
+        //return new ResponseEntity<String>(HttpStatus.UNAUTHORIZED);
     }
 
 
