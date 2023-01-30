@@ -2,6 +2,8 @@ package fra.uas.course.service;
 
 import fra.uas.course.model.Course;
 import fra.uas.course.repository.CourseRepository;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -9,7 +11,7 @@ import java.util.List;
 
 @Service
 public class CourseService implements ICourseService {
-
+    @Autowired
     CourseRepository courseRepository;
 
 
