@@ -1,10 +1,7 @@
 package fra.uas.course.repository;
 
 import fra.uas.course.model.Course;
-import fra.uas.user.model.Role;
-import fra.uas.user.model.User;
 import jakarta.annotation.PostConstruct;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -37,10 +34,12 @@ public class CourseRepository {
         course1.getUserList().add(2);
         course1.getUserList().add(3);
         course1.getUserList().add(4);
+        course1.setStudyingDescription("Wirtschaftsinformatik (WI/IBIS/EBIS)");
+        course1.setLink("/KursseiteWPM.html");
 
         Course course2 = new Course();
         course2.setCourseId(2);
-        course2.setCourseName("WPM by Prof. Dr. Jürgen Schmidhuber");
+        course2.setCourseName("Prozessgetriebene Anwendungssysteme by Prof. Dr. Thomas Kühne");
         course2.setDescription("""
                 Studierende lernen das Requirements Engineering / Anforderungsmanagement anhand von Fallstudien kennen.
                 Inhalte:
@@ -54,10 +53,12 @@ public class CourseRepository {
         course2.getUserList().add(2);
         course2.getUserList().add(3);
         course2.getUserList().add(4);
+        course2.setStudyingDescription("Wirtschaftsinformatik (WI/IBIS/EBIS)");
+        course2.setLink("/KursseitePAS.html");
 
         Course course3 = new Course();
         course3.setCourseId(3);
-        course3.setCourseName("WPM by Prof. Dr. Jürgen Schmidhuber");
+        course3.setCourseName("Software Engineering by Prof. Hans-Joachim Hof");
         course3.setDescription("""
                 Studierende lernen das Requirements Engineering / Anforderungsmanagement anhand von Fallstudien kennen.
                 Inhalte:
@@ -71,11 +72,13 @@ public class CourseRepository {
         course3.getUserList().add(2);
         course3.getUserList().add(3);
         course3.getUserList().add(4);
+        course3.setStudyingDescription("Wirtschaftsinformatik (WI/IBIS/EBIS)");
+        course3.setLink("/KursseiteSWE.html");
 
 
         Course course4 = new Course();
         course4.setCourseId(4);
-        course4.setCourseName("WPM by Prof. Dr. Jürgen Schmidhuber");
+        course4.setCourseName("Algorithmen und Datenstrukturen by Prof. Dr. Jens Palsberg");
         course4.setDescription("""
                 Studierende lernen das Requirements Engineering / Anforderungsmanagement anhand von Fallstudien kennen.
                 Inhalte:
@@ -89,50 +92,17 @@ public class CourseRepository {
         course4.getUserList().add(2);
         course4.getUserList().add(3);
         course4.getUserList().add(4);
+        course4.setStudyingDescription("Wirtschaftsinformatik (WI/IBIS/EBIS)");
+        course4.setLink("/KursseiteAUD.html");
 
 
-        Course course5 = new Course();
-        course5.setCourseId(5);
-        course5.setCourseName("WPM by Prof. Dr. Jürgen Schmidhuber");
-        course5.setDescription("""
-                Studierende lernen das Requirements Engineering / Anforderungsmanagement anhand von Fallstudien kennen.
-                Inhalte:
-                 - Rolle des Requirements Engineering bei der Erstellung betrieblicher Anwendungssoftware
-                   Teildisziplinen des Requirements Management und Schnittstellen zum Projektmanagement
-                   Roadmaps zur Anforderungsermittlung Vorgehensmodelle Arten von Anforderungen
-                   Tools und Techniken / Modelle zur Anforderungsermittlung""");
-        course5.setProfessor("Prof. Dr. Jürgen Schmidhuber");
-        course5.setUserList(new ArrayList<Integer>());
-        course5.getUserList().add(1);
-        course5.getUserList().add(2);
-        course5.getUserList().add(3);
-        course5.getUserList().add(4);
 
-
-        Course course6 = new Course();
-        course6.setCourseId(6);
-        course6.setCourseName("WPM by Prof. Dr. Jürgen Schmidhuber");
-        course6.setDescription("""
-                Studierende lernen das Requirements Engineering / Anforderungsmanagement anhand von Fallstudien kennen.
-                Inhalte:
-                 - Rolle des Requirements Engineering bei der Erstellung betrieblicher Anwendungssoftware
-                   Teildisziplinen des Requirements Management und Schnittstellen zum Projektmanagement
-                   Roadmaps zur Anforderungsermittlung Vorgehensmodelle Arten von Anforderungen
-                   Tools und Techniken / Modelle zur Anforderungsermittlung""");
-        course6.setProfessor("Prof. Dr. Jürgen Schmidhuber");
-        course6.setUserList(new ArrayList<Integer>());
-
-        course6.getUserList().add(1);
-        course6.getUserList().add(2);
-        course6.getUserList().add(3);
-        course6.getUserList().add(4);
 
         courseList.add(course1);
         courseList.add(course2);
         courseList.add(course3);
         courseList.add(course4);
-        courseList.add(course5);
-        courseList.add(course6);
+
 
 
     }

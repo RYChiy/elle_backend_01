@@ -1,8 +1,5 @@
 package fra.uas.course.model;
 
-import fra.uas.user.model.User;
-import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 
 
@@ -18,12 +15,17 @@ public class Course {
     private String professor;
     private String description;
 
+    private String studyingDescription;
 
-    public Course(String courseName, String professor, String description) {
+    private String link;
+
+
+    public Course(String courseName, String professor, String description,String shortDescription, String link) {
         super();
         this.courseName = courseName;
         this.professor = professor;
         this.description = description;
+        this.studyingDescription = shortDescription;
     }
 
     public Course(){
@@ -78,5 +80,21 @@ public class Course {
         this.vmList = vmList;
     }
 
+    public String getStudyingDescription() {
+        return studyingDescription;
+    }
+
+    public void setStudyingDescription(String description) {
+        this.studyingDescription = description;
+    }
+
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
+    }
 
 }
