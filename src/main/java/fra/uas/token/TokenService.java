@@ -59,6 +59,7 @@ public class TokenService implements  ITokenService{
             System.out.println(token.getToken());
             System.out.println(userToken);
             if (token.getToken().equals(userToken)){
+
                 if (token.getDateTime().isBefore(token.getDateTime().plusMinutes(60))){
                     return true;
                 }

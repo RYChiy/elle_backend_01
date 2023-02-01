@@ -48,13 +48,15 @@ public class UserController {
     @CrossOrigin
     // Mapping to get a user
     @RequestMapping(value = "/user", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> getUser(@RequestHeader UUID token) {
+    public ResponseEntity<?> getUser(@RequestHeader  UUID token ) {
 
-        if (tokenService.checkIfTokenExistsAndIsValid(token)) {
-            System.out.println("Hallo");
-            //System.out.println("requested User data: " + userService.getUser(userID).toString());
-            return ResponseEntity.status(HttpStatus.OK).body(userService.getUser(tokenService.getUserID(token).getUserID()));
+        if (token!=null){
+
+            if (tokenService.checkIfTokenExistsAndIsValid(token)) {
+                return ResponseEntity.status(HttpStatus.OK).body(userService.getUser(tokenService.getUserID(token).getUserID()));
+            }
         }
+
         return new ResponseEntity<String>(HttpStatus.UNAUTHORIZED);
     }
 
