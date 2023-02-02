@@ -39,7 +39,7 @@ public class CourseService implements ICourseService {
         for (Course course : courseRepository.courseList
         ) {
 
-            if (course.getUserList().contains(1)) {
+            if (course.getUserList().contains(userID)) {
                 userCourseList.add(course);
             }
         }
@@ -79,17 +79,16 @@ public class CourseService implements ICourseService {
     public Course deleteUser(int userId, int courseID) {
         for (Course course : courseRepository.courseList
         ) {
-            if (course.getUserList().contains(userId) && course.getCourseId() == courseID) {
-                course.getUserList().remove(userId);
-                return course;
+            if (course.getUserList().contains(userId)) {
+                if(course.getCourseId() == courseID){
+                    course.getUserList().remove(course.getUserList().indexOf(userId));
+                    return course;
+                }
+
             }
-
-
         }
 
         return null;
-
-
     }
 
     @Override

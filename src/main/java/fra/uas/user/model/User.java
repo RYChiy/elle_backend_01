@@ -1,5 +1,9 @@
 package fra.uas.user.model;
 
+import fra.uas.course.model.Course;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class User {
@@ -8,6 +12,7 @@ public class User {
 
 	private int userId;
 	
+	//private List<Course> userCourseList;
 
 	private String email;
 	private String hashedPassword;
@@ -22,6 +27,7 @@ public class User {
 		this.hashedPassword=hashedPassword;
 		this.firstName=firstName;
 		this.lastName=lastName;
+		//this.courseList = new ArrayList<>();
 		this.role = Role.STUDENT;
 	}
 
@@ -76,6 +82,17 @@ public class User {
 	public void setRole(Role role) {
 		this.role = role;
 	}
+
+	/*
+	public List<Course> getCourseList() {
+		return courseList;
+	}
+
+	public void setCourseList(List<Course> courseList) {
+		this.courseList = courseList;
+	}
+
+	 */
 
 
 

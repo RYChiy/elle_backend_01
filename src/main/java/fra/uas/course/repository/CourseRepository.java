@@ -71,7 +71,6 @@ public class CourseRepository {
         course3.getUserList().add(1);
         course3.getUserList().add(2);
         course3.getUserList().add(3);
-        course3.getUserList().add(4);
         course3.setStudyingDescription("Wirtschaftsinformatik (WI/IBIS/EBIS)");
         course3.setLink("/KursseiteSWE.html");
 
@@ -91,7 +90,6 @@ public class CourseRepository {
         course4.getUserList().add(1);
         course4.getUserList().add(2);
         course4.getUserList().add(3);
-        course4.getUserList().add(4);
         course4.setStudyingDescription("Wirtschaftsinformatik (WI/IBIS/EBIS)");
         course4.setLink("/KursseiteAUD.html");
 

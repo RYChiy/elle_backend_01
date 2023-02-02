@@ -41,10 +41,11 @@ public class CourseController {
     //courses of a user
     @CrossOrigin
     @RequestMapping(value = "/course", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> getAllUserCourse(@RequestHeader UUID userToken) {
+    public ResponseEntity<?> getAllUserCourse(@RequestHeader UUID token) {
 
-        if (tokenService.checkIfTokenExistsAndIsValid(userToken)){
-        return ResponseEntity.status(HttpStatus.OK).body(courseService.getAllUserCourses(tokenService.getUserID(userToken).getUserID()));
+        if (tokenService.checkIfTokenExistsAndIsValid(token)){
+            //System.out.println(courseService.getAllUserCourses(tokenService.getUserID(token).getUserID()));
+        return ResponseEntity.status(HttpStatus.OK).body(courseService.getAllUserCourses(tokenService.getUserID(token).getUserID()));
         }
         return new ResponseEntity<String>(HttpStatus.UNAUTHORIZED);
     }
@@ -61,22 +62,22 @@ public class CourseController {
     }
 
 
-  /*  @CrossOrigin
+  @CrossOrigin
     @RequestMapping(value = "/course/{courseID}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> joinCourse(@RequestHeader UUID userToken, @PathVariable int courseID) {
+    public ResponseEntity<?> joinCourse(@RequestHeader UUID token, @PathVariable int courseID) {
 
-        courseService.addUser(userService.getUserWithToken(userToken).getUserId(), courseID);
+        courseService.addUser(tokenService.getUserID(token).getUserID(),courseID);
 
         return new ResponseEntity<String>(HttpStatus.OK);
-    }*/
+    }
 
-    /*@CrossOrigin
+    @CrossOrigin
     @RequestMapping(value = "/course/{courseID}", method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> leaveCourse(@RequestHeader UUID userToken,@PathVariable int courseID) {
+    public ResponseEntity<?> leaveCourse(@RequestHeader UUID token,@PathVariable int courseID) {
 
-        courseService.deleteUser(userService.getUserWithToken(userToken).getUserId(),courseID);
+        courseService.deleteUser(tokenService.getUserID(token).getUserID(),courseID);
         // log.info("Created a new User: " + userService.getUser(userID).toString());
         return new ResponseEntity<String>(HttpStatus.OK);
-    }*/
+    }
 
 }
